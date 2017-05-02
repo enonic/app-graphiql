@@ -5,8 +5,12 @@ exports.get = function () {
     var view = resolve('./graphiql.html');
     var assetsUrl = portalLib.assetUrl({path: ""});
     var params = {
-        assetsUrl: assetsUrl,
-        graphQlServiceUrl: portalLib.serviceUrl({service: "graphql"})
+        graphiQLAssetsUrl: assetsUrl + '/graphiql',
+        toolAssetsUrl: assetsUrl + '/tool',
+        graphQlServiceUrl: portalLib.serviceUrl({
+            service: 'graphql',
+            application: 'com.enonic.app.myapp'
+        })
     };
 
     return {

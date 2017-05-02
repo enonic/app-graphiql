@@ -1,0 +1,31 @@
+
+.app-bar {
+    background-color: #333;
+    height: 44px;
+    color: #eee;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 15px;
+}
+
+.app-icon {
+    width: 25px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.app-title {
+    font-family: "Open Sans", sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+#graphiql {
+    position: fixed;
+    top: 44px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
