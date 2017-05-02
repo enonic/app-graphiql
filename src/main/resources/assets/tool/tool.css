@@ -1,3 +1,7 @@
+.tool-header, .location-submit {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+}
 
 .app-bar {
     background-color: #333;
@@ -6,8 +10,34 @@
 
     display: flex;
     align-items: center;
-
     padding-left: 15px;
+}
+
+.location-bar {
+    height: 41px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #777;
+    border-bottom: 1px solid #eee;
+}
+
+.location-input {
+    font-size: 13px;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+    padding: 3px;
+}
+
+.location-submit {
+    background-color: #999;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    height: 25px;
+
 }
 
 .app-icon {
@@ -17,14 +47,12 @@
 }
 
 .app-title {
-    font-family: "Open Sans", sans-serif;
     text-transform: uppercase;
-    font-size: 15px;
 }
 
 #graphiql {
     position: fixed;
-    top: 44px;
+    top: 85px;
     bottom: 0;
     left: 0;
     right: 0;

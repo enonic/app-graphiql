@@ -15,7 +15,7 @@
             margin: 0;
             width: 100%;
             overflow: hidden;
-        }        
+        }
     </style>
 
     <script src="//cdn.jsdelivr.net/es6-promise/4.0.5/es6-promise.auto.min.js"></script>
@@ -41,9 +41,17 @@
 
 </head>
 <body>
-<div class="app-bar">
-    <img class="app-icon" src="{{toolAssetsUrl}}/tool.svg">
-    <span class="app-title">GraphiQL</span>
+<div class="tool-header">
+    <div class="app-bar">
+        <img class="app-icon" src="{{toolAssetsUrl}}/tool.svg">
+        <span class="app-title">GraphiQL</span>
+    </div>
+    <form class="location-bar">
+        <span>Service location: </span>
+        <input id="graphQlServiceLocation" class="location-input" name="location" type="text" value="{{graphQlServiceUrl}}">
+        {{#query}}<input name="query" type="hidden" value="{{.}}">{{/query}}
+        <input class="location-submit" type="submit" value="Refresh">
+</div>
 </div>
 <div id="graphiql">Loading...</div>
 <script>
@@ -90,7 +98,7 @@
     }
 
     function graphQLFetcher(graphQLParams) {
-        return fetch('{{graphQlServiceUrl}}', {
+        return fetch(document.getElementById('graphQlServiceLocation').value, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
