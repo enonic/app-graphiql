@@ -11,6 +11,6 @@ It also display a documentation of your GraphQL schema.
 Compatibility
 -------------
 
-| Version | XP Version -| Dependency                       |
-|---------|-------------|----------------------------------|
-| 0.1.0   | 6.10.x      | com.enonic.lib:lib-graphql:0.1.0 |
+| Version | XP Version  |
+|---------|-------------|
+| 0.1.0   | 6.10.x      |
