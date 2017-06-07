@@ -20,7 +20,13 @@
     padding-left: 15px;
     padding-right: 15px;
     color: #777;
-    border-bottom: 1px solid #eee;
+    background: #eeeeee;
+    border-bottom: 1px solid #d6d6d6;
+    font-family: system, -apple-system, 'San Francisco', '.SFNSDisplay-Regular', 'Segoe UI', Segoe, 'Segoe WP', 'Helvetica Neue', helvetica, 'Lucida Grande', arial, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: lowercase;
 }
 
 .location-input {
