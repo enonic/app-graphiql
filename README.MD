@@ -13,4 +13,4 @@ Compatibility
 
 | Version | XP Version  | Download |
 |---------|-------------| -------- |
-| 0.1.0   | 6.10.x      | [Download](http://repo.enonic.com/public/com/enonic/app/graphiql/0.1.0/graphiql-0.1.0.jar) |
+| 0.2.0   | 6.10.x      | [Download](http://repo.enonic.com/public/com/enonic/app/graphiql/0.2.0/graphiql-0.2.0.jar) |
