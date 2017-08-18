@@ -1,4 +1,5 @@
 var portalLib = require('/lib/xp/portal');
+var contentLib = require('/lib/xp/content');
 var mustacheLib = require('/lib/xp/mustache');
 
 exports.get = function (req) {
@@ -8,13 +9,36 @@ exports.get = function (req) {
         graphiQLAssetsUrl: assetsUrl + '/graphiql',
         toolAssetsUrl: assetsUrl + '/tool',
         query: req.params.query,
-        graphQlServiceUrl: req.params.location || portalLib.serviceUrl({
-            service: 'graphql',
-            application: 'com.enonic.app.myapp'
-        })
+        graphQlServiceUrl: req.params.location || generateServiceUrl()
     };
 
     return {
         body: mustacheLib.render(view, params)
     };
 };
+
+function generateServiceUrl() {
+    var bean = __.newBean('com.enonic.app.guillotine.GraphiQLBean');
+    var sites = contentLib.query({query: 'type = "portal:site"'}).hits;
+    for (var i = 0; i < sites.length; i++) {
+        var site = sites[0];
+        var siteConfig = site.data.siteConfig;
+        if (siteConfig) {
+            for (var j = 0; j < siteConfig.length; j++) {
+                var applicationKey = siteConfig[j].applicationKey;
+                log.info('1:' + applicationKey);
+                if (bean.hasGraphQLService(applicationKey)) {
+                    return generateGraphQLUrl('draft', site._path, applicationKey);
+                }
+            }
+        }
+    }
+    return generateGraphQLUrl('draft', '/mysite', 'com.enonic.app.myapp');
+}
+
+function generateGraphQLUrl(branch, path, applicationKey) {
+    log.info('2:' + applicationKey);
+    var path = '/admin/portal/preview/' + branch + path + '/_/service/' + applicationKey + '/graphql';
+    log.info('3:' + path);
+    return portalLib.url({path: path, type: 'absolute'});
+}
