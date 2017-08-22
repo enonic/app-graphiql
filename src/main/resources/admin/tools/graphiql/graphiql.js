@@ -21,12 +21,11 @@ function generateServiceUrl() {
     var bean = __.newBean('com.enonic.app.guillotine.GraphiQLBean');
     var sites = contentLib.query({query: 'type = "portal:site"'}).hits;
     for (var i = 0; i < sites.length; i++) {
-        var site = sites[0];
+        var site = sites[i];
         var siteConfig = site.data.siteConfig;
         if (siteConfig) {
             for (var j = 0; j < siteConfig.length; j++) {
                 var applicationKey = siteConfig[j].applicationKey;
-                log.info('1:' + applicationKey);
                 if (bean.hasGraphQLService(applicationKey)) {
                     return generateGraphQLUrl('draft', site._path, applicationKey);
                 }
@@ -37,8 +36,6 @@ function generateServiceUrl() {
 }
 
 function generateGraphQLUrl(branch, path, applicationKey) {
-    log.info('2:' + applicationKey);
     var path = '/admin/portal/preview/' + branch + path + '/_/service/' + applicationKey + '/graphql';
-    log.info('3:' + path);
     return portalLib.url({path: path, type: 'absolute'});
 }
