@@ -1,6 +1,7 @@
 var portalLib = require('/lib/xp/portal');
 var contentLib = require('/lib/xp/content');
 var mustacheLib = require('/lib/xp/mustache');
+var timestamp = Date.now();
 
 exports.get = function (req) {
     var view = resolve('./graphiql.html');
@@ -9,7 +10,13 @@ exports.get = function (req) {
         graphiQLAssetsUrl: assetsUrl + '/graphiql',
         toolAssetsUrl: assetsUrl + '/tool',
         query: req.params.query,
-        graphQlServiceUrl: req.params.location || generateServiceUrl()
+        graphQlServiceUrl: req.params.location || generateServiceUrl(),
+        launcherConfig : {
+            adminUrl: portalLib.url({path: "/admin"}),
+            assetsUri: portalLib.url({path: "/admin/assets/" + timestamp}),
+            appId: app.name,
+            appName: 'GraphiQL'
+        }
     };
 
     return {

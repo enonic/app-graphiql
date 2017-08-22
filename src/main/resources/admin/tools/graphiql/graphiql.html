@@ -38,10 +38,19 @@
         }
     </style>
     <link rel="stylesheet" href="{{toolAssetsUrl}}/tool.css"/>
-    <link rel="icon" type="image/png" href="{{graphiQLAssetsUrl}}/graphiql.png" />
+    <link rel="icon" type="image/png" href="{{graphiQLAssetsUrl}}/graphiql.png"/>
 
 </head>
 <body>
+<!-- Launcher panel configuration -->
+<script type="text/javascript">
+    var CONFIG = {
+        adminUrl: '{{launcherConfig.adminUrl}}',
+        assetsUri: '{{launcherConfig.assetsUri}}',
+        appId: '{{launcherConfig.appId}}'
+    };
+</script>
+
 <div class="tool-header">
     <div class="app-bar">
         <img class="app-icon" src="{{toolAssetsUrl}}/tool.svg">
@@ -52,6 +61,7 @@
         <input id="graphQlServiceLocation" class="location-input" name="location" type="text" value="{{graphQlServiceUrl}}">
         {{#query}}<input name="query" type="hidden" value="{{.}}">{{/query}}
         <input class="location-submit" type="submit" value="Refresh">
+    </form>
 </div>
 </div>
 <div id="graphiql">Loading...</div>
@@ -131,5 +141,7 @@
             document.getElementById('graphiql')
     );
 </script>
+<!-- Append the launcher panel -->
+<script type="text/javascript" src="{{launcherConfig.assetsUri}}/apps/launcher/js/_all.js" async></script>
 </body>
 </html>
