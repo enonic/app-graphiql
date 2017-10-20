@@ -8,13 +8,35 @@
     <script src="//cdn.jsdelivr.net/react/15.4.2/react.min.js"></script>
     <script src="//cdn.jsdelivr.net/react/15.4.2/react-dom.min.js"></script>
     
-    <script src="{{graphiQLAssetsUrl}}/graphiql.js"></script>
+    <script src="{{graphiQLAssetsUrl}}/graphiql.min.js"></script>
     
     <link rel="stylesheet" href="{{graphiQLAssetsUrl}}/graphiql.css"/>
     <link rel="stylesheet" href="{{toolAssetsUrl}}/tool.css"/>
+
+    <script type="text/javascript">
+        var CONFIG = {
+            adminUrl: '{{launcherConfig.adminUrl}}',
+            assetsUri: '{{launcherConfig.assetsUri}}',
+            appId: '{{launcherConfig.appId}}'
+        };
+    </script>
+
 </head>
 <body>
-
+<div class="tool-header">
+    <div class="app-bar">
+        <img class="app-icon" src="{{toolAssetsUrl}}/tool.svg">
+        <span class="app-title">GraphiQL</span>
+    </div>
+    <form class="location-bar">
+        <span>Service location: </span>
+        <input id="graphQlServiceLocation" class="location-input" name="location" type="text" value="{{graphQlServiceUrl}}">
+        {{#query}}<input name="query" type="hidden" value="{{.}}">{{/query}}
+        <input class="location-submit" type="submit" value="Refresh">
+    </form>
+</div>
+<div id="graphiql-container"></div>
 <script type="text/javascript" src="{{toolAssetsUrl}}/tool.js" async></script>
+<script type="text/javascript" src="{{launcherConfig.assetsUri}}/apps/launcher/js/_all.js" async></script>
 </body>
 </html>

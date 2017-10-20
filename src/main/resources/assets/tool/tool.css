@@ -61,7 +61,7 @@ html, body {
     text-transform: uppercase;
 }
 
-#graphiql {
+#graphiql-container {
     position: fixed;
     top: 88px;
     bottom: 0;
