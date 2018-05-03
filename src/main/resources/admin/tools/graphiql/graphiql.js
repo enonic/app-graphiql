@@ -11,7 +11,7 @@ exports.get = function (req) {
         toolAssetsUrl: assetsUrl + '/tool',
         query: req.params.query,
         graphQlServiceUrl: req.params.location || generateServiceUrl(),
-        launcherConfig : {
+        launcherConfig: {
             adminUrl: portalLib.url({path: "/admin"}),
             assetsUri: portalLib.url({path: "/admin/assets/" + timestamp}),
             appId: app.name,
@@ -29,13 +29,11 @@ function generateServiceUrl() {
     var sites = contentLib.query({query: 'type = "portal:site"'}).hits;
     for (var i = 0; i < sites.length; i++) {
         var site = sites[i];
-        var siteConfig = site.data.siteConfig;
-        if (siteConfig) {
-            for (var j = 0; j < siteConfig.length; j++) {
-                var applicationKey = siteConfig[j].applicationKey;
-                if (bean.hasGraphQLService(applicationKey)) {
-                    return generateGraphQLUrl('draft', site._path, applicationKey);
-                }
+        var siteConfigs = forceArray(site.data.siteConfig);
+        for (var j = 0; j < siteConfigs.length; j++) {
+            var applicationKey = siteConfigs[j].applicationKey;
+            if (bean.hasGraphQLService(applicationKey)) {
+                return generateGraphQLUrl('draft', site._path, applicationKey);
             }
         }
     }
@@ -45,4 +43,14 @@ function generateServiceUrl() {
 function generateGraphQLUrl(branch, path, applicationKey) {
     var path = '/admin/portal/preview/' + branch + path + '/_/service/' + applicationKey + '/graphql';
     return portalLib.url({path: path, type: 'absolute'});
+}
+
+function forceArray(data) {
+    if (data == null) {
+        return [];
+    }
+    if (!Array.isArray(data)) {
+        return [data];
+    }
+    return data;
 }
