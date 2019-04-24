@@ -8,7 +8,7 @@ app {
     name = project.appName
     displayName = 'Enonic XP GraphiQL Tool'
     vendorName = 'Enonic AS'
-    vendorUrl = 'http://enonic.com'
+    vendorUrl = 'https://enonic.com'
     systemVersion = "${xpVersion}"
 }
 
@@ -17,7 +17,7 @@ dependencies {
     compile "com.enonic.xp:portal-api:${xpVersion}"
     include "com.enonic.xp:lib-content:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.lib:lib-mustache:2.0.0-B1"
+    include "com.enonic.lib:lib-mustache:2.0.0-RC1"
 }
 
 repositories {
